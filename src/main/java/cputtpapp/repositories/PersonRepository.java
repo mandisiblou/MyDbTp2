@@ -7,7 +7,10 @@ import cputtpapp.domain.Person;
  */
 public interface PersonRepository {
     Person create(Person person);
+
     Person read(String id);
+
     Person update(Person person);
-    void   delete(String id);
+
+    void delete(String id);
 }

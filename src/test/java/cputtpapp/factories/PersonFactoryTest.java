@@ -1,13 +1,15 @@
 package cputtpapp.factories;
 
 import cputtpapp.domain.Person;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by hashcode on 2017/05/09.
@@ -15,12 +17,12 @@ import static org.junit.Assert.*;
 public class PersonFactoryTest {
     Map<String,String> values;
 
-    @Before
+    @BeforeMethod
     public void setUp() throws Exception {
         values = new HashMap<String, String>();
         values.put("id","1");
         values.put("firstname","John");
-        values.put("lastname","Deo");
+        values.put("lastname","Doe");
     }
 
     @Test
