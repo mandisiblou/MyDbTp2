@@ -3,13 +3,16 @@ package cputtpapp.repositories;
 import cputtpapp.domain.Person;
 import cputtpapp.factories.PersonFactory;
 import cputtpapp.repositories.Impl.PersonRepositoryImpl;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+
 
 /**
  * Created by hashcode on 2017/05/09.
@@ -18,7 +21,7 @@ public class PersonRepositoryTest {
     Map<String,String> values;
     PersonRepository repository;
 
-    @Before
+    @BeforeMethod
     public void setUp() throws Exception {
         repository = new PersonRepositoryImpl();
         values = new HashMap<String, String>();
@@ -28,29 +31,22 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    public void crud() throws Exception {
+    public void create() throws Exception {
 
         Person person = PersonFactory.getPerson(values,25);
         repository.create(person);
         assertEquals(25,person.getAge());
 
+    }
+
+    @Test(dependsOnMethods = {"create"})
+    public void read() throws Exception {
         Person readperson = repository.read("1");
         assertEquals(25,readperson.getAge());
 
-
-
-
-
-
     }
 
-    @Test
-    public void read() throws Exception {
-
-
-    }
-
-    @Test
+    @Test(dependsOnMethods = "create")
     public void update() throws Exception {
         Person person = repository.read("1");
         Person newPerson = new Person.Builder()
@@ -66,7 +62,7 @@ public class PersonRepositoryTest {
         assertEquals(22,UpdatePerson.getAge());
     }
 
-    @Test
+    @Test(dependsOnMethods = "update")
     public void delete() throws Exception {
         repository.delete("1");
         Person person = repository.read("1");
