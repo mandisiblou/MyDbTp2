@@ -10,10 +10,19 @@ import java.util.Map;
  * Created by hashcode on 2017/05/09.
  */
 public class PersonRepositoryImpl implements PersonRepository{
-    Map<String,Person> personTable;
 
-    public PersonRepositoryImpl() {
+    private static PersonRepositoryImpl respository = null;
+
+    private Map<String,Person> personTable;
+
+    private PersonRepositoryImpl() {
         personTable = new HashMap<String, Person>();
+    }
+
+    public static PersonRepositoryImpl getInstance(){
+        if(respository==null)
+            respository = new PersonRepositoryImpl();
+        return respository;
     }
 
     public Person create(Person person) {
@@ -24,7 +33,6 @@ public class PersonRepositoryImpl implements PersonRepository{
 
     public Person read(String id) {
         Person person = personTable.get(id);
-        System.out.println(" The Person Object is "+person);
         return person;
     }
 
