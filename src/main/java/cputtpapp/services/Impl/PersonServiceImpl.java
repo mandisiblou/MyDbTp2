@@ -10,7 +10,16 @@ import cputtpapp.services.PersonService;
  */
 public class PersonServiceImpl implements PersonService{
 
+    private static PersonServiceImpl service = null;
+
     PersonRepository repository = PersonRepositoryImpl.getInstance();
+
+    public static PersonServiceImpl getInstance(){
+        if(service == null)
+            service = new PersonServiceImpl();
+        return service;
+    }
+
     public Person create(Person person) {
         return repository.create(person);
     }
