@@ -35,13 +35,13 @@ public class PersonServiceTest {
         assertEquals(25,person.getAge());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testCreate")
     public void testRead() throws Exception {
         Person readperson = service.read("1");
         assertEquals(25,readperson.getAge());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testRead")
     public void testUpdate() throws Exception {
         Person person = service.read("1");
         Person newPerson = new Person.Builder()
@@ -55,7 +55,7 @@ public class PersonServiceTest {
         assertEquals(22,UpdatePerson.getAge());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
         service.delete("1");
         Person person = service.read("1");
