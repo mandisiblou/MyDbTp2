@@ -2,6 +2,8 @@ package cputtpapp.factories;
 
 import cputtpapp.domain.Person;
 
+import cputtpapp.services.Impl.PersonServiceImpl;
+import cputtpapp.services.PersonService;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
